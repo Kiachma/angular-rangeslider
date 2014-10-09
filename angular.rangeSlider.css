@@ -101,6 +101,7 @@
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  z-index: 1001
 }
 /* line 97, scss/angular.rangeSlider.scss */
 .ngrs-range-slider .ngrs-runner {
@@ -171,7 +172,7 @@
 /* line 182, scss/angular.rangeSlider.scss */
 .ngrs-range-slider .ngrs-value {
   position: absolute;
-  top: 100%;
+  bottom: 100%;
   left: 0;
   padding: 5px 0 0 0;
   font-size: 12px;
