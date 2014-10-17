@@ -394,6 +394,7 @@
                 function handleMove(index) {
 
                     var $handle = handles[index];
+                    var $value = values[index];
 
                     // on mousedown / touchstart
                     $handle.bind(onEvent + 'X', function (event) {
@@ -420,6 +421,7 @@
 
                             // add down class
                             $handle.addClass('ngrs-down');
+                            $value.addClass('ngrs-focus');
 
                             $slider.addClass('ngrs-focus ' + handleDownClass);
 
@@ -523,6 +525,8 @@
 
                                 // remove down class
                                 $handle.removeClass('ngrs-down');
+
+                                $value.removeClass('ngrs-focus');
 
                                 // remove active class
                                 $slider.removeClass('ngrs-focus ' + handleDownClass);
