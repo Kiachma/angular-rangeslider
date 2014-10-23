@@ -46,7 +46,7 @@
 /* line 69, scss/angular.rangeSlider.scss */
 .ngrs-range-slider {
   position: relative;
-  margin: 10px 0 30px;
+  margin-top: 6px;
   padding: 4px;
   border: 1px solid #ccc;
   background: #fff;
@@ -177,11 +177,11 @@
   padding: 5px 0 0 0;
   font-size: 12px;
   color: #999;
-  display: none;
+  
 }
 
-.ngrs-range-slider .ngrs-value.ngrs-focus {
-  display: inline;
+.ngrs-range-slider .ngrs-value.ngrs-hide {
+ display: none;
   }
 /* line 190, scss/angular.rangeSlider.scss */
 .ngrs-range-slider .ngrs-value.ngrs-value-max {
@@ -327,28 +327,28 @@
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 /* line 372, scss/angular.rangeSlider.scss */
-.ngrs-range-slider.ngrs-disabled, .ngrs-range-slider.ngrs-disabled.ngrs-focus {
+.ngrs-range-slider.disabled, .ngrs-range-slider.disabled.ngrs-focus {
   border-color: #ddd;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
 }
 /* line 378, scss/angular.rangeSlider.scss */
-.ngrs-range-slider.ngrs-disabled .ngrs-handle {
+.ngrs-range-slider.disabled .ngrs-handle {
   background: #fff;
   border-color: #ddd;
 }
 /* line 382, scss/angular.rangeSlider.scss */
-.ngrs-range-slider.ngrs-disabled .ngrs-handle i {
+.ngrs-range-slider.disabled .ngrs-handle i {
   background: none !important;
   cursor: default;
 }
 /* line 388, scss/angular.rangeSlider.scss */
-.ngrs-range-slider.ngrs-disabled .ngrs-join {
+.ngrs-range-slider.disabled .ngrs-join {
   background: #ddd;
 }
 /* line 392, scss/angular.rangeSlider.scss */
-.ngrs-range-slider.ngrs-disabled .ngrs-value {
+.ngrs-range-slider.disabled .ngrs-value {
   color: #ddd;
 }
 
