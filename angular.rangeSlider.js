@@ -59,7 +59,7 @@
                         showValues: true,
                         preventEqualMinMax: false,
                         attachHandleValues: false,
-                        hideValues: false
+                        hideValues: false,
                     },
 
                     onEvent = (EVENT === 1 ? 'pointerdown' : (EVENT === 2 ? 'MSPointerDown' : (EVENT === 3 ? 'touchstart' : 'mousedown'))) + eventNamespace,
@@ -100,12 +100,12 @@
                     replace: true,
                     template: ['<div class="ngrs-range-slider">',
                         '<div class="ngrs-runner">',
-                        '<div class="ngrs-handle ngrs-handle-min"><i></i></div>',
-                        '<div class="ngrs-handle ngrs-handle-max"><i></i></div>',
+                        '<div class="ngrs-handle ngrs-handle-min"><div class="ngrs-value ngrs-value-min" ng-show="showValues">{{filteredModelMin}}</div></div>',
+                        '<div class="ngrs-handle ngrs-handle-max"><div class="ngrs-value ngrs-value-max" ng-show="showValues">{{filteredModelMax}}</div></div>',
                         '<div class="ngrs-join"></div>',
                         '</div>',
-                        '<div class="ngrs-value ngrs-value-min" ng-show="showValues">{{filteredModelMin}}</div>',
-                        '<div class="ngrs-value ngrs-value-max" ng-show="showValues">{{filteredModelMax}}</div>',
+                        
+                        
                         '</div>'
                     ].join(''),
                     scope: {
@@ -136,6 +136,7 @@
                         var $slider = angular.element(element),
                             handles = [element.find('.ngrs-handle-min'), element.find('.ngrs-handle-max')],
                             values = [element.find('.ngrs-value-min'), element.find('.ngrs-value-max')],
+                            runner = element.find('.ngrs-runner'),
                             join = element.find('.ngrs-join'),
                             pos = 'left',
                             posOpp = 'right',
@@ -385,12 +386,14 @@
                                     angular.element(join).css(pos, handle1pos + '%').css(posOpp, (100 - handle2pos) + '%');
 
                                     //reposition values
+                                    /*
                                     if (scope.attachHandleValues) {
                                         angular.element(values[0]).css(pos, handle1pos + '%');
                                         angular.element(values[1]).css(pos, handle2pos + '%');
-                                    }
+                                    }*/
 
 
+                                    angular.element(runner).css("margin-right", angular.element(handles[1]).width());
                                     // ensure min handle can't be hidden behind max handle
                                     if (handle1pos > 95) {
                                         angular.element(handles[0]).css('z-index', 3);

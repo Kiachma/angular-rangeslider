@@ -45,8 +45,8 @@
 \*------------------------------------*/
 /* line 69, scss/angular.rangeSlider.scss */
 .ngrs-range-slider {
+  height: 34px;
   position: relative;
-  margin-top: 6px;
   padding: 4px;
   border: 1px solid #ccc;
   background: #fff;
@@ -107,7 +107,7 @@
 .ngrs-range-slider .ngrs-runner {
   position: relative;
   margin: 0 9px;
-  height: 18px;
+  height: 26px;
 }
 /* line 107, scss/angular.rangeSlider.scss */
 .ngrs-range-slider .ngrs-join {
@@ -132,13 +132,14 @@
   position: absolute;
   z-index: 2;
   height: 100%;
-  width: 18px;
+  width: auto;
   margin: 0 0 0 -9px;
   background: #efefef;
   border: 1px solid #ccc;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
+  padding:0 3px 0px 3px;
   /*------------------------------------*\
       HANDLE ICON
   \*------------------------------------*/
@@ -171,12 +172,12 @@
 }
 /* line 182, scss/angular.rangeSlider.scss */
 .ngrs-range-slider .ngrs-value {
-  position: absolute;
-  bottom: 100%;
+  position: relative;
   left: 0;
-  padding: 5px 0 0 0;
+  padding: 3px 0 3px 0;
   font-size: 12px;
   color: #999;
+  white-space: nowrap;
   
 }
 
@@ -240,7 +241,7 @@
 .ngrs-range-slider.ngrs-vertical .ngrs-runner {
   margin: 9px 0;
   height: 300px;
-  width: 18px;
+  width: auto;
 }
 /* line 242, scss/angular.rangeSlider.scss */
 .ngrs-range-slider.ngrs-vertical .ngrs-value-runner.ngrs-attached-handles {
