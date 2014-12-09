@@ -103,9 +103,12 @@
                         '<div class="ngrs-handle ngrs-handle-min"><div class="ngrs-value ngrs-value-min" ng-show="showValues">{{filteredModelMin}}</div></div>',
                         '<div class="ngrs-handle ngrs-handle-max"><div class="ngrs-value ngrs-value-max" ng-show="showValues">{{filteredModelMax}}</div></div>',
                         '<div class="ngrs-join"></div>',
+                        '<span ng-repeat="interval in bufferIntervals">',
+                        '<div id="ngrs-buffer-{{$index}}" class="ngrs-buffer"></div>',
+                        '</span>',
                         '</div>',
-                        
-                        
+
+
                         '</div>'
                     ].join(''),
                     scope: {
@@ -125,7 +128,8 @@
                         pinHandle: '@',
                         preventEqualMinMax: '@',
                         attachHandleValues: '@',
-                        hideValues: '@'
+                        hideValues: '@',
+                        bufferIntervals: '=?'
                     },
                     link: function(scope, element, attrs, controller) {
 
@@ -138,6 +142,7 @@
                             values = [element.find('.ngrs-value-min'), element.find('.ngrs-value-max')],
                             runner = element.find('.ngrs-runner'),
                             join = element.find('.ngrs-join'),
+                            buffer = element.find('.ngrs-buffer'),
                             pos = 'left',
                             posOpp = 'right',
                             orientation = 0,
@@ -354,6 +359,13 @@
                                 var handle1pos = restrict(((scope.modelMin - scope.min) / range) * 100),
                                     handle2pos = restrict(((scope.modelMax - scope.min) / range) * 100);
 
+                                if (!scope.bufferIntervals) {
+                                    buffer.css('display', 'none');
+                                } else {
+                                    buffer.css('display', 'block');
+                                }
+
+
                                 // make sure the model values are within the allowed range
                                 scope.modelMin = Math.max(scope.min, scope.modelMin);
                                 scope.modelMax = Math.min(scope.max, scope.modelMax);
@@ -375,6 +387,7 @@
 
                                     // reposition join
                                     angular.element(join).css(pos, '0%').css(posOpp, '0%');
+                                    angular.element(buffer).css(pos, '0%').css(posOpp, '0%');
 
                                 } else {
 
@@ -384,6 +397,18 @@
 
                                     // reposition join
                                     angular.element(join).css(pos, handle1pos + '%').css(posOpp, (100 - handle2pos) + '%');
+                                    var i = 0;
+                                    angular.forEach(element.find(".ngrs-buffer"), function(value, key) {
+                                        var min = restrict(((scope.bufferIntervals[i].start - scope.min) / range) * 100),
+                                            max = restrict(((scope.bufferIntervals[i].end - scope.min) / range) * 100);
+
+                                        buffer = angular.element(value);
+                                        buffer.css(pos, min + '%').css(posOpp, (100 - max) + '%');
+                                        i++;
+
+                                    });
+
+
 
                                     //reposition values
                                     /*
@@ -591,13 +616,13 @@
 
                         $slider
                         // disable selection
-                        .bind('selectstart' + eventNamespace, function(event) {
-                            return false;
-                        })
-                        // stop propagation
-                        .bind('click', function(event) {
-                            event.stopPropagation();
-                        });
+                            .bind('selectstart' + eventNamespace, function(event) {
+                                return false;
+                            })
+                            // stop propagation
+                            .bind('click', function(event) {
+                                event.stopPropagation();
+                            });
 
                         // bind events to each handle
                         handleMove(0);
